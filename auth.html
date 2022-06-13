@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crappo-Webflow | Login or Register</title>
+    <!-- <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="vendor/filepond/css/filepond.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body
+x-data="{ 
+    openTab: 1, 
+    tab_one_open: true,
+    showPassLabel: false,
+    showEmailLabel: false
+}">
+    <div class="w-screen flex"
+    >
+        <div class="md:w-4/6 sm:none md:h-screen bg-[url('/img/auth-image.JPG')]">
+        </div>
+        <div class="md:w-2/6 sm:w-screen md:h-screen">
+            <nav class="bg-white mb-2">
+                <div class="container px-6 py-4 mx-auto">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <a class="text-2xl font-bold text-gray-800 transition-colors duration-200 transform lg:text-3xl hover:text-gray-700" href="#">Brand</a>
+                        </div>
+                        
+                        <!-- Mobile menu button -->
+                        <div class="flex">
+                            <a class="text-gray-700 transition-colors duration-200 transform dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300" href="index.html">
+                                <svg fill="red" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 128 128" class="w-8 h-8">    
+                                    <path d="M 64 6 C 48.5 6 33.9 12 23 23 C 12 33.9 6 48.5 6 64 C 6 79.5 12 94.1 23 105 C 34 116 48.5 122 64 122 C 79.5 122 94.1 116 105 105 C 116 94 122 79.5 122 64 C 122 48.5 116 33.9 105 23 C 94.1 12 79.5 6 64 6 z M 64 12 C 77.9 12 90.900781 17.399219 100.80078 27.199219 C 110.70078 36.999219 116 50.1 116 64 C 116 77.9 110.60078 90.900781 100.80078 100.80078 C 90.900781 110.60078 77.9 116 64 116 C 50.1 116 37.099219 110.60078 27.199219 100.80078 C 17.299219 91.000781 12 77.9 12 64 C 12 50.1 17.399219 37.099219 27.199219 27.199219 C 36.999219 17.299219 50.1 12 64 12 z M 50.5625 47.5 C 49.8 47.5 49.05 47.800391 48.5 48.400391 C 47.3 49.600391 47.3 51.499609 48.5 52.599609 L 59.800781 64 L 48.400391 75.300781 C 47.200391 76.500781 47.200391 78.4 48.400391 79.5 C 49.000391 80.1 49.8 80.400391 50.5 80.400391 C 51.2 80.400391 51.999609 80.1 52.599609 79.5 L 64 68.199219 L 75.300781 79.5 C 75.900781 80.1 76.700391 80.400391 77.400391 80.400391 C 78.100391 80.400391 78.9 80.1 79.5 79.5 C 80.7 78.3 80.7 76.400781 79.5 75.300781 L 68.199219 64 L 79.5 52.699219 C 80.7 51.499219 80.699609 49.600391 79.599609 48.400391 C 78.399609 47.200391 76.500391 47.200391 75.400391 48.400391 L 64 59.800781 L 52.699219 48.400391 C 52.099219 47.800391 51.325 47.5 50.5625 47.5 z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+        
+                    <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
+                    <!-- <div class="items-center md:flex sm:inline-flex">
+                        <div class="flex justify-center md:block">
+                            <a class="relative text-gray-700 transition-colors duration-200 transform dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300" href="index.html">
+                                <svg fill="red" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 128 128" class="w-8 h-8">    
+                                    <path d="M 64 6 C 48.5 6 33.9 12 23 23 C 12 33.9 6 48.5 6 64 C 6 79.5 12 94.1 23 105 C 34 116 48.5 122 64 122 C 79.5 122 94.1 116 105 105 C 116 94 122 79.5 122 64 C 122 48.5 116 33.9 105 23 C 94.1 12 79.5 6 64 6 z M 64 12 C 77.9 12 90.900781 17.399219 100.80078 27.199219 C 110.70078 36.999219 116 50.1 116 64 C 116 77.9 110.60078 90.900781 100.80078 100.80078 C 90.900781 110.60078 77.9 116 64 116 C 50.1 116 37.099219 110.60078 27.199219 100.80078 C 17.299219 91.000781 12 77.9 12 64 C 12 50.1 17.399219 37.099219 27.199219 27.199219 C 36.999219 17.299219 50.1 12 64 12 z M 50.5625 47.5 C 49.8 47.5 49.05 47.800391 48.5 48.400391 C 47.3 49.600391 47.3 51.499609 48.5 52.599609 L 59.800781 64 L 48.400391 75.300781 C 47.200391 76.500781 47.200391 78.4 48.400391 79.5 C 49.000391 80.1 49.8 80.400391 50.5 80.400391 C 51.2 80.400391 51.999609 80.1 52.599609 79.5 L 64 68.199219 L 75.300781 79.5 C 75.900781 80.1 76.700391 80.400391 77.400391 80.400391 C 78.100391 80.400391 78.9 80.1 79.5 79.5 C 80.7 78.3 80.7 76.400781 79.5 75.300781 L 68.199219 64 L 79.5 52.699219 C 80.7 51.499219 80.699609 49.600391 79.599609 48.400391 C 78.399609 47.200391 76.500391 47.200391 75.400391 48.400391 L 64 59.800781 L 52.699219 48.400391 C 52.099219 47.800391 51.325 47.5 50.5625 47.5 z"/></svg>
+                            </a>
+                        </div>
+                    </div> -->
+                </div>
+            </nav>
+            <div 
+            class="mx-auto w-full p-16" 
+            >
+                <div class="flex border-b border-blue-400 dark:border-gray-700 mb-6">
+                    <button class="h-10 px-12 sm:px-24 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none" @click="openTab = 1; tab_one_open = true" :class="tab_one_open ? 'border-b-2 border-blue-500 text-blue-600' : ''">
+                        LOGIN
+                    </button>
+            
+                    <button class="sm:px-24 h-10 px-12 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none" @click="openTab = 2; tab_one_open = false" :class="tab_one_open ? '' : 'border-b-2 border-blue-500 text-blue-600'">
+                        REGISTER
+                    </button>
+                </div>
+
+                <!-- Login Layout -->
+                <div class="" x-show="openTab === 1">
+                    <h2 class="text-6xl py-4">Hello Guest</h2>
+
+                    <p>
+                        Welcome to Mate Family. Please login with your personal account information letter.
+                    </p>
+
+                    <a href="" class="sm:px-4 text-center sm:mx-auto sm:w-64 my-8 flex items-center px-4 py-2 font-medium tracking-wide text-black capitalize transition-colors duration-200 transform bg-white rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80 shadow shadow-gray-200 hover:text-white">
+                        <img src="/img/icons8-google.svg" alt="" class="mr-4 w-8">
+                        <span>Sign in with Google</span>
+                    </a>
+
+                    <div class="inline-flex items-center w-64 mx-auto sm:w-full">
+                        <hr class="w-2/4 mr-2"> <span>OR</span> <hr class="w-2/4 ml-2">
+                    </div>
+
+                    <div class="sm:mt-8 sm:w-94">
+                        <form action="" class="sm:mx-auto">
+                            <div class="my-2 p-2 sm:w-full">
+                                <label for="email" class="text-blue-500 " :class="showEmailLabel ? 'block' : 'hidden'">Email Address</label>
+
+                                <input type="email" name="email" id="" class="sm:w-full focus:border-b focus:outline-none focus:border-b-blue-500 focus:border-b-4" placeholder="Email Address" @click="showEmailLabel = true; showPassLabel = false" :class="showEmailLabel ? 'placeholder:none' : ''">
+                            </div>
+                            <div class="my-2 p-2">
+                                <label for="password" class="text-blue-500"
+                                :class="showPassLabel ? 'block' : 'hidden'"
+                                >Password</label>
+
+                                <input type="password" name="password" id="password" class="sm:w-full focus:border-b focus:outline-none focus:border-b-blue-500 focus:border-b-4" placeholder="Password"
+                                @click="showEmailLabel = false; showPassLabel = true"
+                                :class="showPassLabel ? 'placeholder:none' : ''"
+                                >
+                            </div>
+
+                            <div class="my-4 p-2">
+                                <label for="remember">
+                                    <input type="checkbox" name="remeber_me" id="remember">
+                                    Remember Me
+                                </label>
+                            </div>
+
+                            <div class="my-3 flex items-center jsutify-center">
+                                <button type="submit" class="sm:w-32 mr-2 px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                                    Login
+                                </button>
+
+                                <a href="#" class="text-blue-600">Forgot Password</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Register Layout -->
+                <div class="" x-show="openTab === 2">
+                    <h2 class="text-6xl py-4">Hello Guest</h2>
+
+                    <p>
+                        Welcome to Mate Family. Please create an account with your personal account information letter.
+                    </p>
+
+                    <a href="" class="sm:px-4 text-center sm:mx-auto sm:w-64 my-4 flex items-center px-4 py-2 font-medium tracking-wide text-black capitalize transition-colors duration-200 transform bg-white rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80 shadow shadow-gray-200 hover:text-white">
+                        <img src="/img/icons8-google.svg" alt="" class="mr-4 w-8">
+                        <span>Sign up with Google</span>
+                    </a>
+
+                    <div class="inline-flex items-center w-64 mx-auto sm:w-full">
+                        <hr class="w-2/4 mr-2"> <span>OR</span> <hr class="w-2/4 ml-2">
+                    </div>
+
+                    <div class="sm:mt-4 sm:w-94">
+                        <form action="" class="sm:mx-auto">
+                            <div class="my-2 p-2 sm:w-full">
+                                <input type="text" name="name" id="name" class="sm:w-full focus:border-b focus:outline-none focus:border-b-blue-500 focus:border-b-4" placeholder="Your name">
+                            </div>
+                            <div class="my-2 p-2 sm:w-full">
+                                <input type="email" name="email" id="email" class="sm:w-full focus:border-b focus:outline-none focus:border-b-blue-500 focus:border-b-4" placeholder="Email Address">
+                            </div>
+                            <div class="my-2 p-2 sm:w-full">
+                                <input type="tel" name="phone_number" id="" class="sm:w-full focus:border-b focus:outline-none focus:border-b-blue-500 focus:border-b-4" placeholder="Phone Number">
+                            </div>
+                            <div class="my-2 p-2 sm:w-full">
+                                <select type="tel" name="country" id="country" class="sm:w-full focus:border-b focus:outline-none focus:border-b-blue-500 focus:border-b-4">
+                                    <option value="">Select your Country</option>
+                                </select>
+                            </div>
+                            <div class="my-2 p-2">
+                                <input type="password" name="password" id="password" class="sm:w-full focus:outline-none" placeholder="Password"
+                                >
+                            </div>
+
+                            <div class="my-4 p-2 text-center">
+                                <label for="id" class="text-center my-2 mx-auto">Upload Valid Government ID</label>
+
+                                <input type="file" name="id" id="id">
+                            </div>
+
+                            <div class="my-3 mx-auto flex items-center justify-center">
+                                <button type="submit" class="sm:w-64 sm:text-center mr-2 px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                                    Register
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Alpine.js -->
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+  <script src="vendor/filepond/js/filepond.min.js"></script>
+  <script>
+    const inputElement = document.querySelector('input[type="file"]');
+    const pond = FilePond.create(inputElement);
+  </script>
+</body>
+</html>
