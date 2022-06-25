@@ -18,14 +18,14 @@ x-data="{
 }">
     <div class="w-screen flex"
     >
-        <div class="md:w-4/6 sm:none md:h-screen bg-[url('/img/auth-image.JPG')]">
-        </div>
+    <div class="md:w-4/6 none md:h-screen md:bg-cover md:bg-[url('/img/pexels-fauxels-3184405.jpg')]">
+    </div>
         <div class="md:w-2/6 sm:w-screen md:h-screen">
             <nav class="bg-white mb-2">
                 <div class="container px-6 py-4 mx-auto">
                     <div class="flex items-center justify-between">
                         <div>
-                            <a class="text-2xl font-bold text-gray-800 transition-colors duration-200 transform lg:text-3xl hover:text-gray-700" href="#">Brand</a>
+                            <a class="text-2xl font-bold text-gray-800 transition-colors duration-200 transform lg:text-3xl hover:text-gray-700" href="#">Prostrategy</a>
                         </div>
                         
                         <!-- Mobile menu button -->
@@ -51,30 +51,32 @@ x-data="{
             <div 
             class="mx-auto w-full p-16" 
             >
-                <div class="flex border-b border-blue-400 dark:border-gray-700 mb-6">
-                    <button class="h-10 px-12 sm:px-24 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none" @click="openTab = 1; tab_one_open = true" :class="tab_one_open ? 'border-b-2 border-blue-500 text-blue-600' : ''">
-                        LOGIN
-                    </button>
-            
-                    <button class="sm:px-24 h-10 px-12 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none" @click="openTab = 2; tab_one_open = false" :class="tab_one_open ? '' : 'border-b-2 border-blue-500 text-blue-600'">
-                        REGISTER
-                    </button>
-                </div>
+            <div class="flex border-b border-blue-400mb-6 w-full">
+                <button class="h-10 px-12 sm:px-24 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none w-1/2" @click="openTab = 1; tab_one_open = true" :class="tab_one_open ? 'border-b-2 border-blue-500 text-blue-600' : ''">
+                    LOGIN
+                </button>
+        
+                <button class="sm:px-24 h-10 px-12 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none w-1/2" @click="openTab = 2; tab_one_open = false" :class="tab_one_open ? '' : 'border-b-2 border-blue-500 text-blue-600'">
+                    REGISTER
+                </button>
+            </div>
 
                 <!-- Login Layout -->
                 <div class="" x-show="openTab === 1">
                     <h2 class="text-6xl py-4">Hello Guest</h2>
 
                     <p>
-                        Welcome to Mate Family. Please login with your personal account information letter.
+                        Welcome to Prostrategy Family. Please login with your personal account information letter.
                     </p>
 
                     <a href="" class="sm:px-4 text-center sm:mx-auto sm:w-64 my-8 flex items-center px-4 py-2 font-medium tracking-wide text-black capitalize transition-colors duration-200 transform bg-white rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80 shadow shadow-gray-200 hover:text-white">
-                        <img src="/img/icons8-google.svg" alt="" class="mr-4 w-8">
-                        <span>Sign in with Google</span>
+                        <div class="flex mx-auto justify-center items-center">
+                            <img src="/img/icons8-google.svg" alt="" class="mr-4 w-8">
+                            <span>Sign in with Google</span>
+                        </div>
                     </a>
 
-                    <div class="inline-flex items-center w-64 mx-auto sm:w-full">
+                    <div class="inline-flex items-center mx-auto w-full">
                         <hr class="w-2/4 mr-2"> <span>OR</span> <hr class="w-2/4 ml-2">
                     </div>
 
@@ -119,15 +121,17 @@ x-data="{
                     <h2 class="text-6xl py-4">Hello Guest</h2>
 
                     <p>
-                        Welcome to Mate Family. Please create an account with your personal account information letter.
+                        Welcome to Prostrategy Family. Please create an account with your personal account information letter.
                     </p>
 
                     <a href="" class="sm:px-4 text-center sm:mx-auto sm:w-64 my-4 flex items-center px-4 py-2 font-medium tracking-wide text-black capitalize transition-colors duration-200 transform bg-white rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80 shadow shadow-gray-200 hover:text-white">
-                        <img src="/img/icons8-google.svg" alt="" class="mr-4 w-8">
-                        <span>Sign up with Google</span>
+                        <div class="flex mx-auto justify-center items-center">
+                            <img src="/img/icons8-google.svg" alt="" class="mr-4 w-8">
+                            <span>Sign in with Google</span>
+                        </div>
                     </a>
 
-                    <div class="inline-flex items-center w-64 mx-auto sm:w-full">
+                    <div class="inline-flex items-center mx-auto w-full">
                         <hr class="w-2/4 mr-2"> <span>OR</span> <hr class="w-2/4 ml-2">
                     </div>
 
